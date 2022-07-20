@@ -1,0 +1,25 @@
+{% extends 'layouts/base.html' %}
+{%block title%}
+Home page
+{%endblock%}
+{% block content %}
+<div class="row mt-10">
+{% for post in data%}
+<div class="col-md-3">
+<div class="card">
+  {%if post.image%}
+  <img src="{{post.image.url}}" class="card-img-top" alt="{{post.title}}">
+  {%endif%}
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}:{{post.created_at|timesince}} ago</h5>
+    <p class="card-text">{{post.intro}}</p>
+    <br>
+    <a href="{% url 'show.post' post.slug%}" class="btn bg-purple-900 text-white">Show</a>
+  </div>
+</div>
+
+</div>
+{% endfor%}
+</div>
+
+{% endblock%}

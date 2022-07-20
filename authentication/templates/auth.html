@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{%block title%}{%endblock%}</title>
+</head>
+
+<body class="h-full">
+  <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <div>
+        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-purple-600.svg"
+          alt="Workflow" />
+        <h2 class="mt-6 text-center text-3xl font-bold text-gray-400">
+          {%block label%}{%endblock%}
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Or
+          <a href="/" class="font-medium text-purple-600 hover:text-purple-500">
+            go back to home
+          </a>
+        </p>
+      </div>
+      {%if messages%}
+      {% for message in messages%}
+      {% if message.tags == 'error' %}
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline">{{message}}</span>
+      </div>
+      {%endif%}
+      {% endfor %}
+
+      {%endif%} {%block form%} {%endblock%}
+    </div>
+  </div>
+</body>
+
+</html>

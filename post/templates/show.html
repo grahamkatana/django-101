@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+{%block title%}
+Post|{{data.title}}
+{%endblock%}
+{% block content %}
+<div class="container">
+<div class="row mt-10">
+<div class="col-md-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<div class="w-full">
+<h2 class="text-2xl">{{data.title}}</h2>
+{%for comment in data.comments.all%}
+<div class="card mt-2 mb-2">
+  <div class="card-body">
+  <h2 class="text-2xl">{{comment.created_at|timesince}} ago <span class="text-sm">{{comment.name}}</span></h2>
+    {{comment.body}}
+  </div>
+</div>
+
+{%endfor%}
+
+</div>
+
+</div>
+
+<div class="col-md-6 bg-gray shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<div class="w-full">
+
+<form class="" method="POST">
+ <h2 class="text-2xl mb-3">Comment</h2>
+
+  {%csrf_token%}
+{{form.as_p}}
+
+   <div class="flex items-center justify-between mt-3">
+   <input type="submit" value="Comment" class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
+      <button  type="button">
+        Comment
+      </button>
+    
+    </div>
+</form>
+</div>
+</div>
+
+</div>
+
+</div>
+
+{% endblock%}
